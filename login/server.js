@@ -67,7 +67,7 @@ app.get('/configuracoes', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'configuracoes.html'));
 });
 
-// Inicie o servidor e abra o navegador
+// Inicie o servidor
 app.listen(PORT, () => {
     console.log(`Servidor rodando na porta ${PORT}`);
     import('open').then((open) => open.default(`http://localhost:${PORT}`));
