@@ -1,7 +1,13 @@
 {
+  "name": "reserved-park",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node login/server.js"
+  },
   "dependencies": {
-    "dotenv": "^16.4.5",
-    "express": "^4.21.1",
-    "open": "^10.1.0"
+    "express": "^4.17.1",
+    "dotenv": "^10.0.0",
+    "open": "^8.0.8"
   }
 }
