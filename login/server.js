@@ -5,9 +5,22 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000; // Use variável de ambiente para a porta
 
+// Modo de Desenvolvimento (local) - Defina as credenciais no código
+const localUsername = "reservedpark2024@gmail.com";
+const localPassword = "reserved@123";
+
 // Use variáveis de ambiente para credenciais
-const correctUsername = process.env.CORRECT_USERNAME;
-const correctPassword = process.env.CORRECT_PASSWORD;
+const envUsername = process.env.CORRECT_USERNAME;
+const envPassword = process.env.CORRECT_PASSWORD;
+
+// Função para obter as credenciais corretas
+const getCredentials = () => {
+    if (envUsername && envPassword) {
+        return { correctUsername: envUsername, correctPassword: envPassword };
+    } else {
+        return { correctUsername: localUsername, correctPassword: localPassword };
+    }
+};
 
 // Middleware para permitir envio de dados no body
 app.use(express.urlencoded({ extended: true }));
@@ -27,6 +40,7 @@ app.get('/', (req, res) => {
 // Rota para processar o login
 app.post('/login', (req, res) => {
     const { usernameInput, passwordInput } = req.body;
+    const { correctUsername, correctPassword } = getCredentials();
 
     // Verifique se o username e a senha estão corretos
     if (usernameInput === correctUsername && passwordInput === correctPassword) {
