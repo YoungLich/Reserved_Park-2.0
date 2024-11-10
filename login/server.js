@@ -1,11 +1,13 @@
+require('dotenv').config(); // Adicione esta linha no topo do seu arquivo server.js
+
 const express = require('express');
 const path = require('path');
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000; // Use variável de ambiente para a porta
 
-// Defina as credenciais no código
-const correctUsername = "reservedpark2024@gmail.com";
-const correctPassword = "reserved@123";
+// Use variáveis de ambiente para credenciais
+const correctUsername = process.env.CORRECT_USERNAME;
+const correctPassword = process.env.CORRECT_PASSWORD;
 
 // Middleware para permitir envio de dados no body
 app.use(express.urlencoded({ extended: true }));
