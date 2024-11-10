@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="relatorios.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jspdf"></script>
+    <script src="https://cdn.jsdelivr.net/npm/docx"></script>
+    <script src="https://cdn.jsdelivr.net/npm/file-saver"></script>
+    <title>Relatórios</title>
+</head>
+
+<body>
+    <div id="relatorios" class="content">
+        <center>
+            <h1>Relatórios</h1>
+        </center>
+
+        <div class="card-container">
+            <!-- Card Resumo do Mês -->
+            <div class="card">
+                <h2 class="text-relatories">Resumo do Mês</h2>
+                <div class="date-filter">
+                    <label for="data-inicial-resumo">Data Inicial:</label>
+                    <input type="date" id="data-inicial-resumo">
+                    <label for="data-final-resumo">Data Final:</label>
+                    <input type="date" id="data-final-resumo">
+                </div>
+
+                <div class="content-space">
+                    <img src="image/4.png" width="350px" class="grafic">
+                </div>
+
+                <div class="button-group">
+                    <button id="exportar-excel-resumo">Exportar para Excel</button>
+                    <button id="exportar-pdf-resumo">Exportar para PDF</button>
+                    <button id="exportar-docx-resumo">Exportar para DOCX</button>
+                </div>
+            </div>
+
+            <!-- Card Crescimento de Clientes -->
+            <div class="card">
+                <h2 class="text-relatories">Crescimento de Clientes</h2>
+                <div class="date-filter">
+                    <label for="data-inicial-clientes">Data Inicial:</label>
+                    <input type="date" id="data-inicial-clientes">
+                    <label for="data-final-clientes">Data Final:</label>
+                    <input type="date" id="data-final-clientes">
+                </div>
+
+                <div class="content-space">
+                    <img src="image/5.png" width="350px" class="grafic">
+                </div>
+
+                <div class="button-group">
+                    <button id="exportar-excel-clientes">Exportar para Excel</button>
+                    <button id="exportar-pdf-clientes">Exportar para PDF</button>
+                    <button id="exportar-docx-clientes">Exportar para DOCX</button>
+                </div>
+            </div>
+
+            <!-- Card Novos Usuários -->
+            <div class="card">
+                <h2 class="text-relatories">Novos Usuários</h2>
+                <div class="date-filter">
+                    <label for="data-inicial-novos">Data Inicial:</label>
+                    <input type="date" id="data-inicial-novos">
+                    <label for="data-final-novos">Data Final:</label>
+                    <input type="date" id="data-final-novos">
+                </div>
+
+                <div class="content-space">
+                    <img src="image/5.png" width="350px" class="grafic">
+                </div>
+
+                <div class="button-group">
+                    <button id="exportar-excel-novos">Exportar para Excel</button>
+                    <button id="exportar-pdf-novos">Exportar para PDF</button>
+                    <button id="exportar-docx-novos">Exportar para DOCX</button>
+                </div>
+            </div>
+
+            <!-- Card Taxa de Retenção -->
+            <div class="card">
+                <h2 class="text-relatories">Taxa de Retenção dos Usuários</h2>
+                <div class="date-filter">
+                    <label for="data-inicial-retencao">Data Inicial:</label>
+                    <input type="date" id="data-inicial-retencao">
+                    <label for="data-final-retencao">Data Final:</label>
+                    <input type="date" id="data-final-retencao">
+                </div>
+
+                <div class="content-space">
+                    <img src="image/4.png" width="350px" class="grafic">
+                </div>
+
+                <div class="button-group">
+                    <button id="exportar-excel-retencao">Exportar para Excel</button>
+                    <button id="exportar-pdf-retencao">Exportar para PDF</button>
+                    <button id="exportar-docx-retencao">Exportar para DOCX</button>
+                </div>
+            </div>
+
+            <!-- Card Monitoramento de Incidentes -->
+            <div class="card">
+                <h2 class="text-relatories">Monitoramento de Incidentes</h2>
+                <div class="date-filter">
+                    <label for="data-inicial-incidentes">Data Inicial:</label>
+                    <input type="date" id="data-inicial-incidentes">
+                    <label for="data-final-incidentes">Data Final:</label>
+                    <input type="date" id="data-final-incidentes">
+                </div>
+
+                <div class="content-space">
+                    <img src="image/1.png" width="350px" class="grafic">
+                </div>
+
+                <div class="button-group">
+                    <button id="exportar-excel-incidentes">Exportar para Excel</button>
+                    <button id="exportar-pdf-incidentes">Exportar para PDF</button>
+                    <button id="exportar-docx-incidentes">Exportar para DOCX</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/relatorios.js"></script>
+    <script src="js/reservas.js"></script>
+    <script src="js/dados_reservas.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,165 @@
+main {
+    text-align: center;
+    margin: auto;
+    margin-top: 10px;
+}
+
+/* Estilos para o Dashboard */
+.dashboard {
+    padding: 10px;
+}
+
+.dashboard-welcome {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.logo {
+    width: 150px;
+}
+
+.link {
+    margin-top: 25px;
+}
+
+#verificar-vagas-link {
+    font-size: 17px;
+    color: #333;
+    transition: 0.1s ease;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#verificar-vagas-link {
+    text-decoration: none;
+    color: rgb(236, 232, 225);
+}
+
+/* Usando CSS Grid para o layout dos cards */
+.dashboard-overview {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+        "vagas saldo"
+        "relatorios configuracoes";
+    grid-gap: 20px;
+    justify-content: center;
+    /* Centraliza a grade na tela */
+}
+
+/* Estilos para os cards do dashboard */
+.card {
+    background-color: rgb(17, 60, 109);
+    border: 1px solid transparent;
+    border-radius: 1%;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, .389);
+    padding: 20px;
+    width: 280px;
+    /* Ajuste de largura se necessário */
+    text-align: center;
+}
+
+/* Posicionamento específico de cada card */
+.vagas-disponiveis {
+    grid-area: vagas;
+    justify-self: end;
+    /* Move um pouco para a esquerda */
+}
+
+.saldo-dono {
+    grid-area: saldo;
+    justify-self: start;
+    /* Move um pouco para a direita */
+}
+
+.solicitar-relatorios {
+    grid-area: relatorios;
+    justify-self: end;
+    /* Alinha à esquerda na linha abaixo */
+}
+
+.configuracoes {
+    grid-area: configuracoes;
+    justify-self: start;
+    /* Alinha à direita na linha abaixo */
+}
+
+/* Estilos adicionais para títulos e conteúdo */
+.card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.vagas-container p,
+.saldo-container p,
+.relatorios-container p,
+.configuracoes-container p {
+    font-size: 1.2rem;
+    color: #f8f3f3;
+}
+
+/* Estilos para botões */
+#sacar-saldo,
+#solicitar-relatorios-btn,
+#configuracoes-btn,
+#link {
+    background-color: #28a745;
+    color: rgb(255, 251, 251);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.2s ease;
+}
+
+#sacar-saldo:hover,
+#solicitar-relatorios-btn:hover,
+#configuracoes-btn:hover,
+#link:hover {
+    background-color: #217733;
+}
+
+/* Estilos para os novos cards do dashboard */
+.reservas-totais,
+.ocupacao-estacionamento,
+.receita-gerada,
+.estacionamentos-populares,
+.tempo-permanencia,
+.picos-ocupacao {
+    width: 280px;
+    margin: 20px auto;
+}
+
+#lista-populares {
+    list-style: none;
+    padding: 0;
+}
+
+#lista-populares li {
+    font-size: 1rem;
+    color: #f8f3f3;
+    margin: 5px 0;
+}
+
+/* Centralizar grid com 3 colunas */
+.dashboard-overview {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 20px;
+    justify-content: center;
+}
+
+.card p {
+    font-size: 1.2rem;
+    color: #f8f3f3;
+}
+
+/* Adiciona uma altura mínima aos gráficos */
+canvas {
+    width: 100% !important;
+    /* Garante que o gráfico ocupe toda a largura do card */
+    height: 200px !important;
+    /* Altura fixa para os gráficos */
+    border-radius: 5px;
+    /* Arredonda os cantos dos gráficos */
+}
