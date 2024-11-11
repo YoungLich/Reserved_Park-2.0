@@ -6,8 +6,8 @@ const app = express();
 const PORT = process.env.PORT || 3000; // Use variável de ambiente para a porta
 
 // Modo de Desenvolvimento (local) - Defina as credenciais no código
-const localUsername = "reservedpark2024@gmail.com";
-const localPassword = "reserved@123";
+const localUsername = "contato@reserved.com";
+const localPassword = "admin";
 
 // Use variáveis de ambiente para credenciais
 const envUsername = process.env.CORRECT_USERNAME;

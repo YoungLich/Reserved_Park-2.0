@@ -1,9 +1,9 @@
 {
-  "name": "reserved-park",
+  "name": "reserved_park",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "node login/server.js"
+    "start": "node server.js"
   },
   "dependencies": {
     "express": "^4.17.1",
