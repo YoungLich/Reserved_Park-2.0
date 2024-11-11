@@ -2,12 +2,17 @@
   "name": "reserved-park",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "start": "node login/server.js"
+    "start": "index.js"
   },
   "dependencies": {
-    "express": "^4.17.1",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
     "dotenv": "^10.0.0",
+    "express": "^4.21.1",
+    "firebase": "^11.0.1",
+    "firebase-admin": "^12.7.0",
     "open": "^8.0.8"
   }
 }

@@ -15,14 +15,16 @@
     <div class="login-container">
         <img src="image/Reserverd.png" class="img2">
         <h2>Login</h2>
-        <form action="/login" method="POST">
+        <form id="loginForm">
             <label for="username"></label>
             <input type="text" id="username" name="usernameInput" required placeholder="Digite seu e-mail"><br><br>
 
             <label for="password"></label>
             <input type="password" id="password" name="passwordInput" required placeholder="Digite sua senha"><br><br>
 
-            <button type="submit">Entrar</button>
+            <button type="submit" id="loginButton">Entrar</button>
+            <p id="loadingMessage" style="display:none;">Carregando...</p>
+            <p id="errorMessage" style="color: red; display: none;"></p>
         </form>
     </div>
 
@@ -32,6 +34,88 @@
         <img src="image/Telegram.png" class="img1">
         <p class="text">Entre em contato conosco</p>
     </div>
+
+    <!-- Incluindo a versão mais recente do Firebase, usando o formato modular -->
+    <script type="module">
+        // Firebase SDK modular (versão 9+)
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js';
+        import { getAuth, signInWithCustomToken } from 'https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js';
+
+        // Configuração do Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyB0woJQZdF3cxf1OIyAu97u6lz95Se5Pd4",
+            authDomain: "resver-12909.firebaseapp.com",
+            projectId: "resver-12909",
+            storageBucket: "resver-12909.appspot.com",
+            messagingSenderId: "630362934867",
+            appId: "1:630362934867:web:c73d8a41d195123f6600a6"
+        };
+
+        // Inicializar Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        // Função de login
+        async function login() {
+            const email = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Exibir mensagem de carregamento
+            document.getElementById('loadingMessage').style.display = 'block';
+            document.getElementById('loginButton').disabled = true; // Desabilitar o botão
+            document.getElementById('errorMessage').style.display = 'none'; // Ocultar mensagens de erro
+
+            try {
+                const response = await fetch('http://localhost:3005/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        usernameInput: email,
+                        passwordInput: password
+                    }),
+                });
+
+                const data = await response.json();
+
+                // Ocultar a mensagem de carregamento
+                document.getElementById('loadingMessage').style.display = 'none';
+                document.getElementById('loginButton').disabled = false; // Habilitar novamente o botão
+
+                if (response.ok && data.token) {
+                    // Autenticar com o token retornado
+                    try {
+                        await signInWithCustomToken(auth, data.token);
+                        window.location.href = data.redirect; // Redirecionar para a página de home
+                    } catch (authError) {
+                        console.error('Erro ao autenticar com o token', authError);
+                        showError('Erro ao autenticar. Tente novamente.');
+                    }
+                } else {
+                    showError(data.message || 'Erro desconhecido.');
+                }
+            } catch (error) {
+                console.error("Erro na requisição de login", error);
+                showError('Erro ao tentar fazer login. Tente novamente.');
+            }
+        }
+
+        function showError(message) {
+            const errorMessage = document.getElementById('errorMessage');
+            errorMessage.textContent = message;
+            errorMessage.style.display = 'block'; // Mostrar a mensagem de erro
+        }
+
+        // Usando addEventListener para garantir que o formulário é tratado corretamente
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.getElementById("loginForm");
+            form.addEventListener("submit", function (event) {
+                event.preventDefault(); // Impede o envio do formulário
+                login(); // Chama a função de login
+            });
+        });
+    </script>
 
 </body>
 
