@@ -24,6 +24,12 @@
     color: white;
 }
 
+#container-localizacao {
+    margin-left: 0px;
+    height: 354px;
+}
+
+
 .configuracao-container {
     background-color: rgba(255, 255, 255, 0.1);
     padding: 15px;
@@ -70,7 +76,7 @@
 
 #salvar-perfil {
     margin-left: 40px;
-    margin-top: 140px;
+    margin-top: 50px;
 }
 
 .configuracao-container button {
