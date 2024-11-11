@@ -3,12 +3,23 @@ import express from 'express';
 import admin from 'firebase-admin';
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+import dotenv from 'dotenv'; // Importando o dotenv com a sintaxe ES Modules
+
+dotenv.config(); // Configuração do dotenv
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const app = express();
 
+const PORT = process.env.PORT || 3000; // Definição da porta
+
 // Inicializa o Firebase Admin SDK para interagir com o Firestore
 admin.initializeApp({
-  credential: admin.credential.cert('conexao-firebase.json'),
+  credential: admin.credential.cert(path.join(__dirname, 'conexao-firebase.json')),
 });
 
 const firebaseConfig = {
@@ -30,11 +41,11 @@ const corsOptions = {
   allowedHeaders: ['Content-Type'],
 }
 
-
 app.use(cors(corsOptions));
-
-
 app.use(express.json());
+
+// Servir arquivos estáticos da pasta 'public'
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Rota de login
 app.post('/login', async (req, res) => {
@@ -45,7 +56,6 @@ app.post('/login', async (req, res) => {
   }
 
   try {
-
     const userSnapshot = await admin.firestore()
       .collection('Usuarios')
       .where('email', '==', usernameInput)
@@ -62,11 +72,10 @@ app.post('/login', async (req, res) => {
       return res.status(401).json({ message: 'Senha incorreta.' });
     }
 
-
     const token = await admin.auth().createCustomToken(userSnapshot.docs[0].id);
 
     return res.json({
-      redirect: '/login/public/home.html',
+      redirect: 'home.html',
       token,
     });
 
@@ -76,14 +85,11 @@ app.post('/login', async (req, res) => {
   }
 });
 
-app.get('/vagas', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'vagas.html'));
-});
+// Rotas para servir páginas HTML adicionais
 app.get('/home', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'home.html'));
 });
 
-// Outras rotas
 app.get('/dashboard', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'dashboard.html'));
 });
@@ -108,5 +114,8 @@ app.get('/configuracoes', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'configuracoes.html'));
 });
 
-
-app.listen(3005, () => console.log('Servidor rodando na porta 3005'));
+// Inicie o servidor
+app.listen(PORT, () => {
+  console.log(`Servidor rodando na porta ${PORT}`);
+  import('open').then((open) => open.default(`http://localhost:${PORT}`));
+});
