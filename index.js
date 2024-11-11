@@ -6,16 +6,13 @@ import { getAuth } from 'firebase/auth';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
-import dotenv from 'dotenv'; // Importando o dotenv com a sintaxe ES Modules
-
-dotenv.config(); // Configuração do dotenv
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const app = express();
 
-const PORT = process.env.PORT || 3000; // Definição da porta
+const PORT = 3005; // Definição da porta fixa
 
 // Inicializa o Firebase Admin SDK para interagir com o Firestore
 admin.initializeApp({
